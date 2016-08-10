@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.buyi.simplehook"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+//        ndk {
+//            moduleName "hookdemo"
+////            ldLibs "log", "z", "m"
+//            // 使用c++ 标准库 并且避免冲突不使用stlport_static
+//            stl "gnustl_static"
+//            // 这里定义头文件寻找的路径
+//            cFlags "-I/Users/buyi/news/SimpleHook/app/src/main/jni/include -I/Users/buyi/news/SimpleHook/app/src/main/jni/dalvik/vm/ -I/Users/buyi/news/SimpleHook/app/src/main/jni/dalvik/ -I/Users/buyi/news/SimpleHook/app/src/main/jni/libc/arch-x86/include " +
+//                    "-I/Users/buyi/news/SimpleHook/app/src/main/jni/libc/arch-arm/include -DHAVE_LITTLE_ENDIAN"
+//            ldLibs "dvm"
+//
+////            abiFilters "armeabi-v7a"
+////            abiFilters "armeabi"
+//            abiFilters "x86"
+//        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets.main {
+        // libs的为止
+        jniLibs.srcDirs = ["src/main/libs"]
+        // native code源代码的位置
+        jni.srcDirs = []
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+}
