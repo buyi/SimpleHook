@@ -29,13 +29,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //  普通方法
         String param1 = "param1";
-        Log.d(TAG, "===========before hook test:" + this.test(param1));
-        hook(MainActivity.class, "test", "(Ljava/lang/String;)Ljava/lang/String;");
-        Log.d(TAG, "===========after hook test:" + this.test(param1));
-        Log.d(TAG, "===========before hook staticTest:" + this.staticTest(param1));
-        hook(MainActivity.class, "staticTest", "(Ljava/lang/String;)Ljava/lang/String;");
-        Log.d(TAG, "===========after hook staticTest:" + this.staticTest(param1));
+        Log.d(TAG, "===========before hook buyi:" + this.buyi(param1));
+        hook(MainActivity.class, "buyi", "(Ljava/lang/String;)Ljava/lang/String;");
+        Log.d(TAG, "===========after hook buyi:" + this.buyi(param1));
+
+
+        // 静态方法
+        Log.d(TAG, "===========before hook staticBuyi:" + this.staticBuyi(param1));
+        hook(MainActivity.class, "staticBuyi", "(Ljava/lang/String;)Ljava/lang/String;");
+        Log.d(TAG, "===========after hook staticBuyi:" + this.staticBuyi(param1));
     }
 
     @Override
@@ -60,24 +64,20 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // 加载so包
     static {
         System.loadLibrary("hookdemo");
     }
-    public static final String TAG = "===[hookdemo]===";
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState)
-//    {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//    }
-    public static String staticTest(String param1)
-    {
-        return "staticTest";
+
+    public static final String TAG = "buyi";
+
+
+    public static String staticBuyi(String param1) {
+        return "staticBuyi";
     }
-    public String test(String param1)
-    {
-        return "11111";
+
+    public String buyi(String param1) {
+        return "buyi";
     }
 
 
